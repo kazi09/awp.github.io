@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/layout.css">
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.min.js"></script>
+  <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+  <!-- <script src="js/navigation.js"></script> -->
+</head>
+<body ng-app="mymodule">
+<table border="1">
+  <tr>
+    <td colspan="2" class="header">
+      <h3>ADITYA SILVER OAK INSTITUTE OF TECHNOLOGY</h3>
+    </td>
+  </tr>
+
+  <tr>
+    <td class="leftmenu">
+     <ul>
+    
+       <li> <a href="#!home"> HOME </a></li>
+       <li> <a href="#!aboutus"> ABOUT US </a></li>
+       <li> <a href="#!services"> SERVICES </a></li>
+       <li> <a href="#!contactus"> CONTACT US </a></li>
+       <li> <a href="#!courses"> COURSES</a></li>
+       <li> <a href="#!events"> EVENTS</a></li>
+     </ul>
+    </td>
+    <td class="maincontent" >
+     <ng-view>
+
+     </ng-view>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="footer">
+      <h3>Footer</h3>
+    </td>
+  </tr>
+</table>
+<script> 
+  var app= angular.module("mymodule",["ngRoute"]);
+  app.config(function($routeProvider) {
+    $routeProvider 
+    .when("/home",{templateUrl:"home.html"})
+    .when("/aboutus",{templateUrl:"aboutus.html",controller:"aboutcontroller"})
+    .when("/services",{templateUrl:"services.html"})
+    .when("/contactus",{templateUrl:"contactus.html"})
+    .when("/courses",{templateUrl:"courses.html",controller:"courses"})
+    .when("/events",{templateUrl:"events.html",controller:"events"})
+    .otherwise({templateUrl:"home.html"})
+});
+
+app.controller("aboutcontroller",function($scope) {
+      $scope.about="Welcome in About us Page";
+    })
+    
+app.controller("courses",function ($scope) {
+  $scope.names=["Computer Engineering","Mechanical Engineering","Electrical Engineering"];  
+})
+
+app.controller("events",function ($scope) {
+  $scope.eventlist={event1:"Talaash",event2:"Prarambh",event3:"Junoon"} 
+})
+
+
+</script> 
+
+
+</body>
+</html>
+
+
+
+
